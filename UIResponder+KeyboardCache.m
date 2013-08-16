@@ -45,12 +45,20 @@ static BOOL hasAlreadyCachedKeyboard;
     }
 }
 
+static BOOL cachingKeyboard = NO;
+
 +(void) __cacheKeyboard {
+    cachingKeyboard = YES;
     UITextField *field = [UITextField new];
     [[[[UIApplication sharedApplication] windows] lastObject] addSubview:field];
     [field becomeFirstResponder];
     [field resignFirstResponder];
     [field removeFromSuperview];
+    cachingKeyboard = NO;
+}
+
++(BOOL) isCachingKeyboard {
+    return cachingKeyboard;
 }
 
 @end

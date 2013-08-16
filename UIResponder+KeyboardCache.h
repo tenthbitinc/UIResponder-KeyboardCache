@@ -26,5 +26,6 @@
 
 +(void) cacheKeyboard;
 +(void) cacheKeyboard:(BOOL)onNextRunloop;
++(BOOL) isCachingKeyboard;
 
 @end
