@@ -27,5 +27,6 @@
 +(void) cacheKeyboard;
 +(void) cacheKeyboard:(BOOL)onNextRunloop;
 +(BOOL) isCachingKeyboard;
++(void) prepareForKeyboardCaching;  // Lightweight method to avoid future caching if keyboard comes up by itself
 
 @end

@@ -61,4 +61,18 @@ static BOOL cachingKeyboard = NO;
     return cachingKeyboard;
 }
 
+static UIResponder *staticResponder = nil;
++(void) prepareForKeyboardCaching {
+    staticResponder = [[UIResponder alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:staticResponder selector:@selector(prepareForKeyboardCachingKeyboardNotification:) name:UIKeyboardWillShowNotification object:nil];
+}
+
+-(void) prepareForKeyboardCachingKeyboardNotification:(NSNotification *)note {
+    if (!hasAlreadyCachedKeyboard) {
+        hasAlreadyCachedKeyboard = YES;
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:staticResponder];
+    staticResponder = nil;
+}
+
 @end
